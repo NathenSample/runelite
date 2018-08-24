@@ -42,6 +42,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ScheduledExecutorService;
 import javax.inject.Singleton;
+import javax.sound.sampled.Clip;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.ChatMessageType;
 import net.runelite.api.Client;
@@ -94,10 +95,14 @@ public class Notifier
 
 	public void notify(String message)
 	{
-		notify(message, TrayIcon.MessageType.NONE);
+		notify(message, TrayIcon.MessageType.NONE, null);
 	}
 
-	public void notify(String message, TrayIcon.MessageType type)
+	public void notify(String message, Clip notificationSound){
+		notify(message, TrayIcon.MessageType.NONE, notificationSound);
+	}
+
+	public void notify(String message, TrayIcon.MessageType type, Clip notificationSound)
 	{
 		if (!runeLiteConfig.sendNotificationsWhenFocused() && clientUI.isFocused())
 		{
@@ -116,7 +121,14 @@ public class Notifier
 
 		if (runeLiteConfig.enableNotificationSound())
 		{
-			Toolkit.getDefaultToolkit().beep();
+			if (notificationSound != null)
+			{
+				notificationSound.start();
+			}
+			else
+			{
+				Toolkit.getDefaultToolkit().beep();
+			}
 		}
 
 		if (runeLiteConfig.enableGameMessageNotification())
