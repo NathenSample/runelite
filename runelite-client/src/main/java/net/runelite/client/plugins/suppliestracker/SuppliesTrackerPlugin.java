@@ -136,8 +136,8 @@ public class SuppliesTrackerPlugin extends Plugin
 
     if (animationChanged.getActor() == client.getLocalPlayer())
     {
-      //estimate for scale usage on blowpipe inaccurate because bp might be on different darts til next scale used
-			/* Turned off for now too inaccurate
+      // TODO: Accurate tracking of blowpipe usage, below shows basic example but is too inaccurate
+			/*
 			if (animationChanged.getActor().getAnimation() == 5061)
 			{
 				dartShots++;
@@ -151,6 +151,7 @@ public class SuppliesTrackerPlugin extends Plugin
 					dartShots = 0;
 				}
 			}*/
+
       //Trident of the seas
       if (animationChanged.getActor().getAnimation() == 1167)
       {

@@ -307,16 +307,6 @@ class SuppliesTrackerPanel extends PluginPanel
           e1.printStackTrace();
         }
       });
- 			/*
-			try
-			{
-				SuppliesTrackerPlugin.getInstance().buildEntries(379);
-			}
-			catch
-					(ExecutionException e1)
-			{
-				e1.printStackTrace();
-			}*/
     });
     addFood.add(swordfish).addActionListener(e ->
     {
