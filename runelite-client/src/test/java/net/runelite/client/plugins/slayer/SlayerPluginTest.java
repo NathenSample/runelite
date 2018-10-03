@@ -55,6 +55,7 @@ public class SlayerPluginTest
 {
 	private static final String TASK_NEW = "Your new task is to kill 231 Suqahs.";
 	private static final String TASK_NEW_NPC_CONTACT = "Excellent, you're doing great. Your new task is to kill<br>211 Suqahs.";
+	private static final String TASK_NEW_FROM_PARTNER = "You have received a new Slayer assignment from breaklulz: Dust Devils (377)";
 	private static final String TASK_CHECKSLAYERGEM_WILDERNESS = "You're assigned to kill Suqahs in the Wilderness; only 211 more to go.";
 	private static final String TASK_CHECKSLAYERGEM = "You're assigned to kill Suqahs; only 211 more to go.";
 
@@ -152,6 +153,18 @@ public class SlayerPluginTest
 		assertEquals("Suqahs", slayerPlugin.getTaskName());
 		assertEquals(211, slayerPlugin.getAmount());
 	}
+
+	@Test
+  public void testNewPartnerTask()
+  {
+    Widget npcDialog = mock(Widget.class);
+    when(npcDialog.getText()).thenReturn(TASK_NEW_FROM_PARTNER);
+    when(client.getWidget(WidgetInfo.DIALOG_NPC_TEXT)).thenReturn(npcDialog);
+    slayerPlugin.onGameTick(new GameTick());
+
+    assertEquals("Dust Devils", slayerPlugin.getTaskName());
+    assertEquals(377, slayerPlugin.getAmount());
+  }
 
 	@Test
 	public void testBossTask()
