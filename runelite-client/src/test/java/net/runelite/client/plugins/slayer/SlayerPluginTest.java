@@ -167,17 +167,17 @@ public class SlayerPluginTest
   }
 
 	@Test
-	public void testBossTask()
-	{
-		Widget npcDialog = mock(Widget.class);
-		when(npcDialog.getText()).thenReturn(TASK_BOSS_NEW);
-		when(client.getWidget(WidgetInfo.DIALOG_NPC_TEXT)).thenReturn(npcDialog);
-		slayerPlugin.onGameTick(new GameTick());
+  public void testBossTask()
+  {
+    Widget npcDialog = mock(Widget.class);
+    when(npcDialog.getText()).thenReturn(TASK_BOSS_NEW);
+    when(client.getWidget(WidgetInfo.DIALOG_NPC_TEXT)).thenReturn(npcDialog);
+    slayerPlugin.onGameTick(new GameTick());
 
-		assertEquals("Vet'ion", slayerPlugin.getTaskName());
-		assertEquals(3, slayerPlugin.getAmount());
-		assertEquals(914, slayerPlugin.getPoints());
-	}
+    assertEquals("Vet'ion", slayerPlugin.getTaskName());
+    assertEquals(3, slayerPlugin.getAmount());
+    assertEquals(914, slayerPlugin.getPoints());
+  }
 
 	@Test
 	public void testCheckSlayerGem()
